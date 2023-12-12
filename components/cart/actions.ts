@@ -8,6 +8,7 @@ import { cookies } from 'next/headers';
 export async function addItem(
   prevState: any,
   selectedVariantId: string | undefined, 
+  quantity: number,
   attributes: [{}]
   ) {
     let cartId = cookies().get('cartId')?.value;
@@ -27,7 +28,7 @@ export async function addItem(
       return 'Missing product variant ID';
     }
     try {
-      const cartItem = {
+      let cartItem = {
         merchandiseId: selectedVariantId,
         quantity: 1,
         attributes: [
