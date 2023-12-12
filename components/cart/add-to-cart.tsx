@@ -87,6 +87,9 @@ export function AddToCart({
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
+      <p className="line-item-property__field">
+       <input className="properties[Your name]"></input>
+     </p>
     </form>
   );
 }
