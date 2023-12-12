@@ -30,11 +30,11 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
       attributes: [
         {
           'key' : 'Name',
-          'value' : 'HuanTH',
+          'value' : 'abc',
         },
         {
           'key' : 'Email',
-          'value' : 'huanth@aaa.com',
+          'value' : 'abc@demo.com',
         },
       ],
     };
