@@ -73,7 +73,7 @@ export function AddToCart({
   availableForSale: boolean;
   attributes: [];
 }) {
-  const [message, formAction] = useFormState(addItem, null);
+  const [message, formAction] = useFormState(addItem, null, null);
   const searchParams = useSearchParams();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
 
