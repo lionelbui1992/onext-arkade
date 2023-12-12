@@ -95,6 +95,9 @@ export default async function ProductPage({ params }: { params: { handle: string
           <div className="basis-full lg:basis-2/6">
             <ProductDescription product={product} />
           </div>
+          <p className="line-item-property__field">
+            <input className="properties[Your name]"></input>
+          </p>
         </div>
         <Suspense>
           <RelatedProducts id={product.id} />
