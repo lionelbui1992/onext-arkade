@@ -5,10 +5,6 @@ export const addToCartMutation = /* GraphQL */ `
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart {
         ...cart
-        properties {
-            key
-            value
-        }
       }
     }
   }
@@ -20,10 +16,6 @@ export const createCartMutation = /* GraphQL */ `
     cartCreate(input: { lines: $lineItems }) {
       cart {
         ...cart
-        properties {
-            key
-            value
-        }
       }
     }
   }
