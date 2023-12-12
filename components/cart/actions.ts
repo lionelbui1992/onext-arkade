@@ -9,9 +9,9 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   let cartId = cookies().get('cartId')?.value;
   let cart;
   let  properties = {
-    'First name': 'Caroline';
-    'Last name': 'Moore';
-    'Email': 'abc@gmail.com';
+    'First name': 'Caroline',
+    'Last name': 'Moore',
+    'Email': 'abc@gmail.com',
   };
 
   if (cartId) {
@@ -32,7 +32,7 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1, properties: properties }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
-    return 'Error adding item to cart';
+    return e;
   }
 }
 
