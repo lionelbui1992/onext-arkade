@@ -15,7 +15,7 @@ function SubmitButton({
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
-  attributes: [];
+  attributes: []; 
 }) {
   const { pending } = useFormStatus();
   const buttonClasses =
