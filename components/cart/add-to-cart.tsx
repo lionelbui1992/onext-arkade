@@ -85,6 +85,7 @@ export function AddToCart({
   const selectedVariantId = variant?.id || defaultVariantId;
   const actionWithVariant = formAction.bind(null, selectedVariantId);
 
+
   return (
     <form action={actionWithVariant}>
       <SubmitButton availableForSale={availableForSale} selectedVariantId={selectedVariantId} attributes={attributes} />
