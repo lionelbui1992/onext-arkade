@@ -24,9 +24,8 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   }
   try {
     const cartItem = {
-      merchandiseId: selectedVariantId,
+      merchandiseId: 1,
       quantity: 1,
-      // attributes: attributes,
       attributes: [
         {
           'key' : 'Name',
