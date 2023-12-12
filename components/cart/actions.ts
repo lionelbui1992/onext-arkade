@@ -5,44 +5,48 @@ import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-export async function addItem(prevState: any, selectedVariantId: string | undefined, attributes: [{}]) {
-  let cartId = cookies().get('cartId')?.value;
-  let cart;
+export async function addItem(
+  prevState: any,
+  selectedVariantId: string | undefined, 
+  attributes: [{}]
+  ) {
+    let cartId = cookies().get('cartId')?.value;
+    let cart;
 
-  if (cartId) {
-    cart = await getCart(cartId);
-  }
+    if (cartId) {
+      cart = await getCart(cartId);
+    }
 
-  if (!cartId || !cart) {
-    cart = await createCart();
-    cartId = cart.id;
-    cookies().set('cartId', cartId);
-  }
+    if (!cartId || !cart) {
+      cart = await createCart();
+      cartId = cart.id;
+      cookies().set('cartId', cartId);
+    }
 
-  if (!selectedVariantId) {
-    return 'Missing product variant ID';
-  }
-  try {
-    const cartItem = {
-      merchandiseId: 1,
-      quantity: 1,
-      attributes: [
-        {
-          'key' : 'Name',
-          'value' : 'abc',
-        },
-        {
-          'key' : 'Email',
-          'value' : 'def@aaa.com',
-        },
-      ],
-    };
-    
-    await addToCart(cartId, [cartItem]);
-    revalidateTag(TAGS.cart);
-  } catch (e) {
-    return 'Error adding item to cart' + JSON.stringify(e);
-  }
+    if (!selectedVariantId) {
+      return 'Missing product variant ID';
+    }
+    try {
+      const cartItem = {
+        merchandiseId: selectedVariantId,
+        quantity: 1,
+        attributes: [
+          {
+            'key' : 'Name',
+            'value' : 'abc',
+          },
+          {
+            'key' : 'Email',
+            'value' : 'def@aaa.com',
+          },
+        ],
+      };
+      
+      await addToCart(cartId, [cartItem]);
+      revalidateTag(TAGS.cart);
+    } catch (e) {
+      return 'Error adding item to cart' + JSON.stringify(e);
+    }
 }
 
 export async function removeItem(prevState: any, lineId: string) {
