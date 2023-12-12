@@ -152,6 +152,7 @@ export type ShopifyAddToCartOperation = {
     lines: {
       merchandiseId: string;
       quantity: number;
+      properties:{}
     }[];
   };
 };
@@ -180,6 +181,7 @@ export type ShopifyUpdateCartOperation = {
       id: string;
       merchandiseId: string;
       quantity: number;
+      properties:{}
     }[];
   };
 };
