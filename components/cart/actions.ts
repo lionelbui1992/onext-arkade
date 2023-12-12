@@ -7,7 +7,9 @@ import { cookies } from 'next/headers';
 
 export async function addItem(
   prevState: any,
-  selectedVariantId: string | undefined
+  selectedVariantId: string | undefined, 
+  quantity: number,
+  attributes: any
   ) {
     let cartId = cookies().get('cartId')?.value;
     let cart;
