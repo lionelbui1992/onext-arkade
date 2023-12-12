@@ -30,7 +30,7 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
       attributes: [
         {
           'key' : 'Recipient Name',
-          'value' : 'John Hardin',
+          'value' : 'John Hardin Black JR.', 
         },
         {
           'key' : 'Recipient Message',
