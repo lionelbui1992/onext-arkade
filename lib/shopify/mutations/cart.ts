@@ -20,6 +20,10 @@ export const createCartMutation = /* GraphQL */ `
     cartCreate(input: { lines: $lineItems }) {
       cart {
         ...cart
+        properties {
+            key
+            value
+        }
       }
     }
   }
