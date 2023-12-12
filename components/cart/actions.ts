@@ -8,7 +8,11 @@ import { cookies } from 'next/headers';
 export async function addItem(prevState: any, selectedVariantId: string | undefined) {
   let cartId = cookies().get('cartId')?.value;
   let cart;
-  let  properties = {'First name': 'Caroline','Last name': 'Moore','Email': 'abc@gmail.com'};
+  let  properties = {
+    'First name': 'Caroline',
+    'Last name': 'Moore',
+    'Email': 'abc@gmail.com'
+  };
 
   if (cartId) {
     cart = await getCart(cartId);
@@ -25,7 +29,7 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   }
 
   try {
-    await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1, properties: properties || {} }]);
+    await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1, properties: properties }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
     return 'Error adding item to cart';
