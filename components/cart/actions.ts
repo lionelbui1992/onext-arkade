@@ -5,7 +5,7 @@ import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-export async function addItem(prevState: any, selectedVariantId: string | undefined, attributes: [{}]) {
+export async function addItem(prevState: any, selectedVariantId: string | undefined) {
   let cartId = cookies().get('cartId')?.value;
   let cart;
 
@@ -22,35 +22,12 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   if (!selectedVariantId) {
     return 'Missing product variant ID';
   }
+
   try {
-    const cartItem = {
-      merchandiseId: selectedVariantId,
-      quantity: 1,
-      // attributes: attributes,
-      attributes: [
-        {
-          'key' : 'Recipient Name',
-          'value' : 'John Hardin',
-        },
-        {
-          'key' : 'Recipient Message',
-          'value' : 'Hello World!',
-        },
-        {
-          'key' : 'Send on date',
-          'value' : '19/12/2023',
-        },
-        {
-          'key' : 'Recipient Email',
-          'value' : 'recipient@demo.com',
-        },
-      ],
-    };
-    
-    await addToCart(cartId, [cartItem]);
+    await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
-    return 'Error adding item to cart' + JSON.stringify(e);
+    return 'Error adding item to cart';
   }
 }
 
@@ -75,7 +52,6 @@ export async function updateItemQuantity(
     lineId: string;
     variantId: string;
     quantity: number;
-    attributes: any;
   }
 ) {
   const cartId = cookies().get('cartId')?.value;
@@ -84,7 +60,7 @@ export async function updateItemQuantity(
     return 'Missing cart ID';
   }
 
-  const { lineId, variantId, quantity, attributes } = payload;
+  const { lineId, variantId, quantity } = payload;
 
   try {
     if (quantity === 0) {
@@ -97,10 +73,9 @@ export async function updateItemQuantity(
       {
         id: lineId,
         merchandiseId: variantId,
-        quantity,
-        attributes
-      }],
-    );
+        quantity
+      }
+    ]);
     revalidateTag(TAGS.cart);
   } catch (e) {
     return 'Error updating item quantity';
