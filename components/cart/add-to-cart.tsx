@@ -73,7 +73,17 @@ export function AddToCart({
   availableForSale: boolean;
   attributes: [];
 }) {
-  const [message, formAction] = useFormState(addItem, null);
+  let attributes= [
+    {
+      'key' : 'Name',
+      'value' : 'abc',
+    },
+    {
+      'key' : 'Email',
+      'value' : 'def@aaa.com',
+    },
+  ];
+  const [message, formAction] = useFormState(addItem, null, attributes);
   const searchParams = useSearchParams();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
 
