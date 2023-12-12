@@ -22,7 +22,6 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   if (!selectedVariantId) {
     return 'Missing product variant ID';
   }
-
   try {
     const cartItem = {
       merchandiseId: selectedVariantId,
@@ -30,27 +29,20 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
       // attributes: attributes,
       attributes: [
         {
-          'key' : 'Recipient Name',
-          'value' : 'John Hardin',
+          'key' : 'Name',
+          'value' : 'abc',
         },
         {
-          'key' : 'Recipient Message',
-          'value' : 'Hello World!',
-        },
-        {
-          'key' : 'Send on date',
-          'value' : '19/12/2023',
-        },
-        {
-          'key' : 'Recipient Email',
-          'value' : 'recipient@demo.com',
+          'key' : 'Email',
+          'value' : 'def@aaa.com',
         },
       ],
     };
+    
     await addToCart(cartId, [cartItem]);
     revalidateTag(TAGS.cart);
   } catch (e) {
-    return 'Error adding item to cart';
+    return 'Error adding item to cart' + JSON.stringify(e);
   }
 }
 
@@ -75,7 +67,7 @@ export async function updateItemQuantity(
     lineId: string;
     variantId: string;
     quantity: number;
-    attributes: [{}];
+    attributes: any;
   }
 ) {
   const cartId = cookies().get('cartId')?.value;
@@ -99,8 +91,8 @@ export async function updateItemQuantity(
         merchandiseId: variantId,
         quantity,
         attributes
-      }
-    ]);
+      }],
+    );
     revalidateTag(TAGS.cart);
   } catch (e) {
     return 'Error updating item quantity';
