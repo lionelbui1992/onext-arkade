@@ -42,10 +42,6 @@ const cartFragment = /* GraphQL */ `
               }
             }
           }
-          properties {
-            key
-            value
-          }
         }
       }
     }
