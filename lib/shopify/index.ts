@@ -212,14 +212,7 @@ export async function createCart(): Promise<Cart> {
 
 export async function addToCart(
   cartId: string,
-  lines: { 
-    merchandiseId: string; 
-    quantity: number;
-    properties: {
-      'First name': 'Caroline';
-      'Last name': 'Moore';
-    }
-  }[]
+  lines: { merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
   const res = await shopifyFetch<ShopifyAddToCartOperation>({
     query: addToCartMutation,

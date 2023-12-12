@@ -152,10 +152,6 @@ export type ShopifyAddToCartOperation = {
     lines: {
       merchandiseId: string;
       quantity: number;
-      properties: {
-        'First name': 'Caroline';
-        'Last name': 'Moore';
-      }
     }[];
   };
 };
