@@ -32,7 +32,7 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1, properties: properties }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
-    return e;
+    return 'Error adding item to cart';
   }
 }
 
