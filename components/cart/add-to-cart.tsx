@@ -73,7 +73,7 @@ export function AddToCart({
   availableForSale: boolean;
   attributes: [];
 }) {
-  let attributes= [
+  const default_attributes= [
     {
       'key' : 'Name',
       'value' : 'abc',
@@ -83,7 +83,7 @@ export function AddToCart({
       'value' : 'def@aaa.com',
     },
   ];
-  const [message, formAction] = useFormState(addItem, null, attributes);
+  const [message, formAction] = useFormState(addItem, null, default_attributes);
   const searchParams = useSearchParams();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
 
