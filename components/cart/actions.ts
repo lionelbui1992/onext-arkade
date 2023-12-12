@@ -9,9 +9,9 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   let cartId = cookies().get('cartId')?.value;
   let cart;
   let  properties = {
-    'First name': 'Caroline',
-    'Last name': 'Moore',
-    'Email': 'abc@gmail.com'
+    'First name': 'Caroline';
+    'Last name': 'Moore';
+    'Email': 'abc@gmail.com';
   };
 
   if (cartId) {
